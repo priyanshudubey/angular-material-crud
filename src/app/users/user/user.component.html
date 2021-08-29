@@ -1,0 +1,78 @@
+<mat-toolbar>
+  <span>{{service.form.controls['$key'].value?"Modify User":"Add User"}}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input type="text" formControlName="name" matInput placeholder="Your name here">
+          <mat-error>Name is mandatory</mat-error>
+        </mat-form-field>
+        <!-- <mat-form-field>
+          <input type="date" formControlName="dob" matInput placeholder="Date of birth">
+        </mat-form-field> -->
+        <!-- <mat-form-field>
+          <input type="text" formControlName="gender" matInput placeholder="Gender">
+        </mat-form-field> -->
+        <mat-form-field>
+          <input type="text" formControlName="birthPlace" matInput placeholder="Birth Place">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="number" formControlName="height" matInput placeholder="Height" min="0">
+          <mat-error>Height should be positive</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="number" formControlName="weight" matInput placeholder="Weight" min="0">
+          <mat-error>Weight should be positive</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <!-- <div class="add-botton-padding"> -->
+          <mat-form-field color="accent">
+            <mat-select formControlName="gender" placeholder="Gender">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let gender of genders">
+                <mat-option value="{{gender.id}}">{{gender.value}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <!-- blood group -->
+          <mat-form-field>
+            <mat-select formControlName="bloodGroup" placeholder="Blood Group">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let bloodGroup of bloodGroups">
+                <mat-option value="{{bloodGroup.id}}">{{bloodGroup.value}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <!-- Date picker -->
+          <!-- <mat-form-field>
+            <input formControlName="dob" matInput [matDatepicker]="picker" [max]="maxDate" placeholder="Date of Birth">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>DOB is mandatory</mat-error>
+          </mat-form-field> -->
+          <mat-form-field>
+            <input formControlName="dob" matInput [matDatepicker]="picker" placeholder="D.O.B">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <!-- buttons -->
+          <div class="button-row">
+            <button type="submit" mat-raised-button color="accent" [disabled]="service.form.invalid">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      <!-- </div> -->
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
