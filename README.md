@@ -1,4 +1,4 @@
-#ReactiveForms
+# Reactive Forms with Angular Material and Firebase Realtime Database
 
 - This is just a practice project which is developed using the following the technologies:-
   - Angular
